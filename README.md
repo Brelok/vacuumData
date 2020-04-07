@@ -1,0 +1,1 @@
+This is application to checking price automatic vacuum cleaner on website 
