@@ -17,36 +17,43 @@ import static java.util.stream.Collectors.toList;
 
 public class ConnectorToWeb {
 
-    final static String URL = "https://www.ceneo.pl/Odkurzacze_automatyczne;0020-30-0-0-8.htm";
+    final static String URL = "https://www.ceneo.pl/Odkurzacze_automatyczne;0020-30-0-0-.htm";
+    final static int numberOfPages = 9;
 
     public static void main(String[] args) {
 
-        try {
-            Connection.Response connection = Jsoup.connect(URL)
-                    .method(Connection.Method.GET)
-                    .execute();
+        List<String> all = new ArrayList<>();
 
-            Document document = connection.parse();
-
-            Elements elements = document.select(".page-body > #body > .wrapper.cat-layout > .cat-layout__products >" +
-                    ".page-tab-content.products > .category-list > .category-list-body.js_category-list-body.js_search-results" +
-                    "> .cat-prod-row.js_category-list-item.js_clickHashData.js_man-track-event");
+        for (int i = 0; i < numberOfPages ; i++) {
 
             List<String> list = new ArrayList<>();
-            List<Element> collect = elements.stream()
-                    .map(element -> element.select(".cat-prod-row__body > .cat-prod-row__content > .cat-prod-row__desc"))
-                    .map(element -> element.get(0))
-                    .map(element -> element.child(0).child(0).child(0).child(0))
-                    .collect(toList());
+            try {
+                Connection.Response connection = Jsoup.connect(URL + i)
+                        .method(Connection.Method.GET)
+                        .execute();
 
-            collect.stream()
-                    .forEach(element -> list.add(element.text()));
+                Document document = connection.parse();
+
+                Elements elements = document.select(".page-body > #body > .wrapper.cat-layout > .cat-layout__products >" +
+                        ".page-tab-content.products > .category-list > .category-list-body.js_category-list-body.js_search-results" +
+                        "> .cat-prod-row.js_category-list-item.js_clickHashData.js_man-track-event");
+
+                List<Element> collect = elements.stream()
+                        .map(element -> element.select(".cat-prod-row__body > .cat-prod-row__content > .cat-prod-row__desc"))
+                        .map(element -> element.get(0))
+                        .map(element -> element.child(0).child(0).child(0).child(0))
+                        .collect(toList());
+
+                collect.stream()
+                        .forEach(element -> list.add(element.text()));
 
 
-            System.out.println(list);
 
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            all.addAll(list);
         }
+        System.out.println(all.size());
     }
 }
