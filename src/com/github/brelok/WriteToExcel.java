@@ -15,7 +15,7 @@ public class WriteToExcel {
             FileOutputStream out = new FileOutputStream(new File("excel.xls"));
             workbook.write(out);
             out.close();
-            System.out.println("it's done");
+            System.out.println("finish write to file");
 
     }
 }
