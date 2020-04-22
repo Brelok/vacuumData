@@ -42,9 +42,13 @@ public class Connector {
                     .map(Elements::text)
                     .collect(Collectors.toList());
 
+            List<String> pennyUpdated = penny.stream()
+                    .map(element -> element.replace(',', '.'))
+                    .collect(Collectors.toList());
+
             List<String> prices = new ArrayList<>();
             for (int i = 0; i < value.size() ; i++) {
-                prices.add(value.get(i) + penny.get(i));
+                prices.add(value.get(i) + pennyUpdated.get(i));
             }
 
             for (int i = 0; i < names.size(); i++) {
