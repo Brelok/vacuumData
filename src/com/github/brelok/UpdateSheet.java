@@ -34,11 +34,14 @@ public class UpdateSheet {
             cell.setCellValue(namesShop.get(i - 1));
         }
 
-        Row row = sheet.createRow(sheet.getLastRowNum() + 1);
+        //other row
+        Row row = sheet.createRow(1);
 
         addValueInCells(row, prices);
 
-        checkTheMinimumValue(workbook, sheet);
+        checkTheMinimumValue(workbook,sheet);
+
+        sheet.shiftRows(1,sheet.getLastRowNum(),1);
 
         return workbook;
     }

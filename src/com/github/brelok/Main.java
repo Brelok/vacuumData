@@ -34,10 +34,10 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (int i = 0; i < 3 ; i++) {
+        for (int i = 0; i <= 2 ; i++) {
 
             try {
-                Thread.sleep(3 * 1000);
+                Thread.sleep(2 * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -50,12 +50,13 @@ public class Main {
                 updateSheet(MBOT900, 3, readingWorkbook);
                 updateSheet(MBOT950, 4, readingWorkbook);
 
-
                 writeToExcel(readingWorkbook);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
+        mailSender();
     }
 }
 

@@ -9,8 +9,6 @@ public class CheckTheMinimumValue {
 
     public static void checkTheMinimumValue(Workbook workbook, Sheet sheet) {
 
-        FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
-        DataFormatter formatter = new DataFormatter();
 
         CellStyle style = workbook.createCellStyle();
         style.setFillForegroundColor(IndexedColors.RED.getIndex());
@@ -32,9 +30,8 @@ public class CheckTheMinimumValue {
             for (int j = 1; j <= row.getLastCellNum() - 1; j++) {
 
                 Cell cell = row.getCell(j);
-                String stringData = formatter.formatCellValue(cell, evaluator);
-                Double integerData = Double.parseDouble(stringData);
-                listPrices.add(integerData);
+
+                listPrices.add(getDouble(workbook, cell));
             }
 
             for (int j = 0; j < listPrices.size(); j++) {
@@ -46,13 +43,18 @@ public class CheckTheMinimumValue {
             for (int j = 1; j <= row.getLastCellNum() - 1; j++) {
 
                 Cell cell = row.getCell(j);
-                String stringData = formatter.formatCellValue(cell, evaluator);
-                Double integerData = Double.parseDouble(stringData);
-                if (integerData == checkValue) {
+                if (getDouble(workbook, cell) == checkValue) {
                     cell.setCellStyle(style);
                 }
             }
         }
+    }
 
+    public static Double getDouble(Workbook workbook, Cell cell) {
+        FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
+        DataFormatter formatter = new DataFormatter();
+
+        String stringData = formatter.formatCellValue(cell, evaluator);
+        return Double.parseDouble(stringData);
     }
 }
