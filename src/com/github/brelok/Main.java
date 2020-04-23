@@ -12,6 +12,7 @@ import java.util.List;
 
 import static com.github.brelok.CheckTheMinimumValue.checkTheMinimumValue;
 import static com.github.brelok.CreatorSheet.*;
+import static com.github.brelok.MailSender.mailSender;
 import static com.github.brelok.ReadWorkbook.readWorkbook;
 import static com.github.brelok.UpdateSheet.updateSheet;
 import static com.github.brelok.WriteToExcel.writeToExcel;
@@ -59,6 +60,8 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        mailSender();
 
 
     }
