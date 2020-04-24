@@ -43,6 +43,12 @@ public class UpdateSheet {
 
         sheet.shiftRows(1,sheet.getLastRowNum(),1);
 
+
+        for (int i = 0; i <= row.getLastCellNum() ; i++) {
+
+            sheet.autoSizeColumn(i);
+        }
+
         return workbook;
     }
 
@@ -63,6 +69,7 @@ public class UpdateSheet {
         //add new cells with prices
         for (int i = 1; i <= prices.size(); i++) {
             Cell cell1 = row.createCell(i);
+
             cell1.setCellValue(prices.get(i - 1));
         }
     }

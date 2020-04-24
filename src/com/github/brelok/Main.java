@@ -34,7 +34,7 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (int i = 0; i <= 2 ; i++) {
+        for (int i = 0; i <= 3 ; i++) {
 
             try {
                 Thread.sleep(2 * 1000);
@@ -56,7 +56,7 @@ public class Main {
             }
         }
 
-        mailSender();
+//        mailSender();
     }
 }
 
