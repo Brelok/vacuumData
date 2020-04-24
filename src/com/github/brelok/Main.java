@@ -34,13 +34,8 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (int i = 0; i <= 1 ; i++) {
 
-            try {
-                Thread.sleep(2 * 1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        while (true) {
 
             try {
                 Workbook readingWorkbook = readWorkbook();
@@ -54,9 +49,17 @@ public class Main {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            mailSender();
+
+            try {
+                Thread.sleep(60000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
         }
-        mailSender();
     }
+
 }
 
 
