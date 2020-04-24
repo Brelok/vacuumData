@@ -11,13 +11,14 @@ import javax.mail.internet.MimeMultipart;
 import java.util.Properties;
 
 import static com.github.brelok.GetTime.getTime;
+import static com.github.brelok.GetTime.getTimeForMail;
 
 public class MailSender {
 
     public static void mailSender () {
 
         final String username = "message.send.code@gmail.com";
-        final String password = "***";
+        final String password = "wysylka8*";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", true);
@@ -38,7 +39,7 @@ public class MailSender {
             message.setFrom(new InternetAddress("message.send.code@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse("brelok87@gmail.com"));
-            message.setSubject("Moneual - dane z: " + getTime());
+            message.setSubject("Moneual - dane z: " + getTimeForMail());
             message.setText("PFA");
 
             MimeBodyPart messageBodyPart = new MimeBodyPart();
