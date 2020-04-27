@@ -10,10 +10,9 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.util.Properties;
 
-import static com.github.brelok.GetTime.getTime;
-import static com.github.brelok.GetTime.getTimeForMail;
 
-public class MailSender {
+
+public class MailSender implements GettingTime {
 
     public static void mailSender () {
 
@@ -39,7 +38,7 @@ public class MailSender {
             message.setFrom(new InternetAddress("message.send.code@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse("brelok87@gmail.com"));
-            message.setSubject("Moneual - dane z: " + getTimeForMail());
+            message.setSubject("Moneual - dane z: " + GettingTime.getTimeForMail());
             message.setText("PFA");
 
             MimeBodyPart messageBodyPart = new MimeBodyPart();

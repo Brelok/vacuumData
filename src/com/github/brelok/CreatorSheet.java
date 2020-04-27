@@ -9,11 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static com.github.brelok.CheckTheMinimumValue.checkTheMinimumValue;
 import static com.github.brelok.Connector.getMap;
-import static com.github.brelok.GetTime.getTime;
 
-public class CreatorSheet {
+public class CreatorSheet implements CheckingMinimumValue, GettingTime {
 
     public static void createSheet(XSSFWorkbook workbook, String name, String url) {
 
@@ -37,7 +35,7 @@ public class CreatorSheet {
 
         addValueInCellsInFirstRow(row, prices);
 
-        checkTheMinimumValue(workbook, row);
+        CheckingMinimumValue.checkTheMinimumValue(workbook, row);
 
 
     }
@@ -61,7 +59,7 @@ public class CreatorSheet {
     public static void addValueInCellsInFirstRow(Row row, List<String> prices) {
         //add first cell with current time
         Cell cell = row.createCell(0);
-        cell.setCellValue(getTime());
+        cell.setCellValue(GettingTime.getTime());
 
         //add new cells with prices
         for (int i = 1; i <= prices.size(); i++) {

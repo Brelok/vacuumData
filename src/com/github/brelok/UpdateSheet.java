@@ -10,12 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static com.github.brelok.CheckTheMinimumValue.checkTheMinimumValue;
 import static com.github.brelok.Connector.getMap;
 import static com.github.brelok.CreatorSheet.getPricesList;
-import static com.github.brelok.GetTime.getTime;
 
-public class UpdateSheet {
+public class UpdateSheet implements CheckingMinimumValue,GettingTime {
 
 
     public static Workbook updateSheet(String url, int numberOfSheet, Workbook workbook) throws IOException {
@@ -35,7 +33,7 @@ public class UpdateSheet {
 
         //first cell inrow
         Cell firstCell = row.createCell(0);
-        firstCell.setCellValue(getTime());
+        firstCell.setCellValue(GettingTime.getTime());
 
 
         List<String> existingNamesShop = getExistingNamesShop(sheet);
@@ -83,7 +81,15 @@ public class UpdateSheet {
             addValueInCells(existingNamesShop, namesShop, prices, row);
 
         }
-        checkTheMinimumValue(workbook,row);
+        CheckingMinimumValue.checkTheMinimumValue(workbook, row);
+
+        sheet.shiftRows(1, sheet.getLastRowNum(), 1); //TODO
+
+
+        //align all column
+        for (int i = 0; i <= row.getLastCellNum(); i++) {
+            sheet.autoSizeColumn(i);
+        }
 
         return workbook;
 
@@ -129,5 +135,6 @@ public class UpdateSheet {
 
         }
     }
+
 
 }

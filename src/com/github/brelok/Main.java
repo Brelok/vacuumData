@@ -7,11 +7,10 @@ import java.io.*;
 
 import static com.github.brelok.CreatorSheet.*;
 import static com.github.brelok.MailSender.mailSender;
-import static com.github.brelok.ReadWorkbook.readWorkbook;
 import static com.github.brelok.UpdateSheet.updateSheet;
 import static com.github.brelok.WriteToExcel.writeToExcel;
 
-public class Main {
+public class Main implements ReadingWorkbook {
 
     final static String AME5500 = "https://www.ceneo.pl/51503793";
     final static String AME7000 = "https://www.ceneo.pl/51503794";
@@ -36,26 +35,29 @@ public class Main {
             e.printStackTrace();
         }
 
+        for (int i = 0; i < 2 ; i++) {
 
-        try {
-            Thread.sleep(3 * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            try {
+                Thread.sleep(3 * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                Workbook readingWorkbook = ReadingWorkbook.readWorkbook();
+                updateSheet(AME5500, 0, readingWorkbook);
+                updateSheet(AME7000, 1, readingWorkbook);
+                updateSheet(MBOT500, 2, readingWorkbook);
+                updateSheet(MBOT900, 3, readingWorkbook);
+                updateSheet(MBOT950, 4, readingWorkbook);
+
+                System.out.println("updating excel file ...");
+                writeToExcel(readingWorkbook);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
-
-        try {
-            Workbook readingWorkbook = readWorkbook();
-            updateSheet(AME5500, 0, readingWorkbook);
-            updateSheet(AME7000, 1, readingWorkbook);
-            updateSheet(MBOT500, 2, readingWorkbook);
-            updateSheet(MBOT900, 3, readingWorkbook);
-            updateSheet(MBOT950, 4, readingWorkbook);
-            System.out.println("updating excel file ...");
-            writeToExcel(readingWorkbook);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
 
     }
 
