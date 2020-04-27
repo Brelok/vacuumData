@@ -6,7 +6,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.*;
 
 import static com.github.brelok.CreatorSheet.*;
-import static com.github.brelok.MailSender.mailSender;
 import static com.github.brelok.ReadWorkbook.readWorkbook;
 import static com.github.brelok.UpdateSheet.updateSheet;
 import static com.github.brelok.WriteToExcel.writeToExcel;
@@ -23,19 +22,22 @@ public class Main {
 
         XSSFWorkbook workbook = new XSSFWorkbook();
 
-        createSheet(workbook, "AME5500");
-        createSheet(workbook, "AME7000");
-        createSheet(workbook, "MBOT500");
-        createSheet(workbook, "MBOT900");
-        createSheet(workbook, "MBOT950");
+        createSheet(workbook, "AME5500", AME5500);
+        createSheet(workbook, "AME7000", AME7000);
+        createSheet(workbook, "MBOT500", MBOT500);
+        createSheet(workbook, "MBOT900", MBOT900);
+        createSheet(workbook, "MBOT950", MBOT950);
 
         try {
             writeToExcel(workbook);
+            System.out.println("created new excel file");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+
         while (true) {
+
 
             try {
                 Workbook readingWorkbook = readWorkbook();
@@ -44,20 +46,21 @@ public class Main {
                 updateSheet(MBOT500, 2, readingWorkbook);
                 updateSheet(MBOT900, 3, readingWorkbook);
                 updateSheet(MBOT950, 4, readingWorkbook);
-
                 writeToExcel(readingWorkbook);
+                System.out.println("updated excel file");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            mailSender();
+
 
             try {
-                Thread.sleep(60000);
+                Thread.sleep(600000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
         }
+
     }
 
 }

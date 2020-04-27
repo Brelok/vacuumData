@@ -19,6 +19,15 @@ public class CheckTheMinimumValue {
         style.setBorderTop(BorderStyle.THIN);
         style.setBottomBorderColor(IndexedColors.BLACK.getIndex());
 
+        CellStyle styleZero = workbook.createCellStyle();
+        styleZero.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
+        styleZero.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        styleZero.setBorderBottom(BorderStyle.THIN);
+        styleZero.setBorderLeft(BorderStyle.THIN);
+        styleZero.setBorderRight(BorderStyle.THIN);
+        styleZero.setBorderTop(BorderStyle.THIN);
+        styleZero.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+
 
         double checkValue = 100000;
 
@@ -31,7 +40,8 @@ public class CheckTheMinimumValue {
 
                 Cell cell = row.getCell(j);
 
-                listPrices.add(getDouble(workbook, cell));
+                    listPrices.add(getDouble(workbook, cell));
+
             }
 
             for (int j = 0; j < listPrices.size(); j++) {
@@ -45,6 +55,7 @@ public class CheckTheMinimumValue {
                 Cell cell = row.getCell(j);
                 if (getDouble(workbook, cell) == checkValue) {
                     cell.setCellStyle(style);
+
                 }
             }
         }
