@@ -6,6 +6,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.*;
 
 import static com.github.brelok.CreatorSheet.*;
+import static com.github.brelok.MailSender.mailSender;
 import static com.github.brelok.ReadWorkbook.readWorkbook;
 import static com.github.brelok.UpdateSheet.updateSheet;
 import static com.github.brelok.WriteToExcel.writeToExcel;
@@ -29,39 +30,35 @@ public class Main {
         createSheet(workbook, "MBOT950", MBOT950);
 
         try {
+            System.out.println("creating new excel file ...");
             writeToExcel(workbook);
-            System.out.println("created new excel file");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
-        while (true) {
-
-
-            try {
-                Workbook readingWorkbook = readWorkbook();
-                updateSheet(AME5500, 0, readingWorkbook);
-                updateSheet(AME7000, 1, readingWorkbook);
-                updateSheet(MBOT500, 2, readingWorkbook);
-                updateSheet(MBOT900, 3, readingWorkbook);
-                updateSheet(MBOT950, 4, readingWorkbook);
-                writeToExcel(readingWorkbook);
-                System.out.println("updated excel file");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-            try {
-                Thread.sleep(600000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
+        try {
+            Thread.sleep(3 * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
+        try {
+            Workbook readingWorkbook = readWorkbook();
+            updateSheet(AME5500, 0, readingWorkbook);
+            updateSheet(AME7000, 1, readingWorkbook);
+            updateSheet(MBOT500, 2, readingWorkbook);
+            updateSheet(MBOT900, 3, readingWorkbook);
+            updateSheet(MBOT950, 4, readingWorkbook);
+            System.out.println("updating excel file ...");
+            writeToExcel(readingWorkbook);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
+
 
 }
 

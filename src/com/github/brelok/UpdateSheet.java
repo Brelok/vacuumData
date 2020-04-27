@@ -83,6 +83,7 @@ public class UpdateSheet {
             addValueInCells(existingNamesShop, namesShop, prices, row);
 
         }
+        checkTheMinimumValue(workbook,row);
 
         return workbook;
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CheckTheMinimumValue {
 
-    public static void checkTheMinimumValue(Workbook workbook, Sheet sheet) {
+    public static void checkTheMinimumValue(Workbook workbook, Row row) {
 
 
         CellStyle style = workbook.createCellStyle();
@@ -31,32 +31,22 @@ public class CheckTheMinimumValue {
 
         double checkValue = 100000;
 
-        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+        List<Double> listPrices = new ArrayList<>();
 
-            Row row = sheet.getRow(i);
-            List<Double> listPrices = new ArrayList<>();
+        for (int i = 1; i < row.getLastCellNum() - 1 ; i++) {
+            Cell cell = row.getCell(i);
+            listPrices.add(getDouble(workbook, cell));
+        }
 
-            for (int j = 1; j <= row.getLastCellNum() - 1; j++) {
-
-                Cell cell = row.getCell(j);
-
-                    listPrices.add(getDouble(workbook, cell));
-
+        for (int i = 0; i < listPrices.size(); i++) {
+            if(listPrices.get(i) < checkValue){
+                checkValue = listPrices.get(i);
             }
-
-            for (int j = 0; j < listPrices.size(); j++) {
-                if (listPrices.get(j) < checkValue) {
-                    checkValue = listPrices.get(j);
-                }
-            }
-
-            for (int j = 1; j <= row.getLastCellNum() - 1; j++) {
-
-                Cell cell = row.getCell(j);
-                if (getDouble(workbook, cell) == checkValue) {
-                    cell.setCellStyle(style);
-
-                }
+        }
+        for (int i = 1; i < row.getLastCellNum() ; i++) {
+            Cell cell = row.getCell(i);
+            if(getDouble(workbook, cell) == checkValue){
+                cell.setCellStyle(style);
             }
         }
     }

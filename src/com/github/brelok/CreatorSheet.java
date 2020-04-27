@@ -37,7 +37,7 @@ public class CreatorSheet {
 
         addValueInCellsInFirstRow(row, prices);
 
-        checkTheMinimumValue(workbook, sheet);
+        checkTheMinimumValue(workbook, row);
 
 
     }
