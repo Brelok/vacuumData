@@ -35,10 +35,11 @@ public class Main implements ReadingWorkbook {
             e.printStackTrace();
         }
 
-        for (int i = 0; i < 4 ; i++) {
+        mailSender();
 
+        while (true) {
             try {
-                Thread.sleep(3 * 1000);
+                Thread.sleep(3600000); //3 600 000 -= 1 hour, 3 000 = 3 min
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -57,10 +58,9 @@ public class Main implements ReadingWorkbook {
                 e.printStackTrace();
             }
 
+            mailSender();
         }
-
     }
-
 
 }
 
