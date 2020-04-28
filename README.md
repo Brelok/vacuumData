@@ -1,1 +1,1 @@
-This is application to checking prices automatic vacuum cleaner on website 
+This is application to checking prices some devices on website. App checks prices and is writing to excel file and is sending file through mail. It runs every 1 hour. Deployed on heroku. 
