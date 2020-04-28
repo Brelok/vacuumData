@@ -39,7 +39,7 @@ public class Main implements ReadingWorkbook {
 
         while (true) {
             try {
-                Thread.sleep(3600000); //3 600 000 -= 1 hour, 3 000 = 3 min
+                Thread.sleep(3600000); //3 600 000 -= 1 hour, 180 000 = 3 min
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
