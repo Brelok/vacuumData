@@ -27,9 +27,10 @@ public class UpdateSheet implements CheckingMinimumValue,GettingTime {
 
         Row firstRow = sheet.getRow(0);
 
+        sheet.shiftRows(1, sheet.getLastRowNum(), 1);
 
         //create next row
-        Row row = sheet.createRow(sheet.getLastRowNum() + 1);
+        Row row = sheet.createRow(1);
 
         //first cell inrow
         Cell firstCell = row.createCell(0);
@@ -83,7 +84,6 @@ public class UpdateSheet implements CheckingMinimumValue,GettingTime {
         }
         CheckingMinimumValue.checkTheMinimumValue(workbook, row);
 
-        sheet.shiftRows(1, sheet.getLastRowNum(), 1); //TODO
 
 
         //align all column

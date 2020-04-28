@@ -35,7 +35,7 @@ public class Main implements ReadingWorkbook {
             e.printStackTrace();
         }
 
-        for (int i = 0; i < 2 ; i++) {
+        for (int i = 0; i < 4 ; i++) {
 
             try {
                 Thread.sleep(3 * 1000);
