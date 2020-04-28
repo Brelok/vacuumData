@@ -17,7 +17,7 @@ public class MailSender implements GettingTime {
     public static void mailSender () {
 
         final String username = "message.send.code@gmail.com";
-        final String password = "wysylka8*";
+        final String password = "***";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", true);
