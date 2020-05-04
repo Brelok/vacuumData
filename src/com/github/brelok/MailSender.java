@@ -17,7 +17,7 @@ public class MailSender implements GettingTime {
     public static void mailSender () {
 
         final String username = "message.send.code@gmail.com";
-        final String password = "***";
+        final String password = "wysylka8*";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", true);
@@ -37,7 +37,7 @@ public class MailSender implements GettingTime {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("message.send.code@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("michal@moneual.pl"));
+                    InternetAddress.parse("brelok87@gmail.com")); //michal@moneual.pl
             message.setSubject("Moneual - dane z: " + GettingTime.getTimeForMail());
             message.setText("PFA");
 
