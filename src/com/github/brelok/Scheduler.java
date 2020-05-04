@@ -13,7 +13,6 @@ public class Scheduler {
 
     public static void main(String[] args) {
 
-
         try {
             org.quartz.Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 
