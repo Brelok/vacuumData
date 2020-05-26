@@ -37,7 +37,7 @@ public class MailSender implements GettingTime {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("message.send.code@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("brelok87@gmail.com")); //michal@moneual.pl
+                    InternetAddress.parse("michal@moneual.pl")); //michal@moneual.pl
             message.setSubject("Moneual - dane z: " + GettingTime.getTimeForMail());
             message.setText("PFA");
 

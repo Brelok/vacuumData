@@ -1,16 +1,19 @@
 package com.github.brelok;
 
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.quartz.*;
 
 
 import java.io.*;
 
+import static com.github.brelok.CreatorSheet.createSheet;
 import static com.github.brelok.MailSender.mailSender;
+import static com.github.brelok.ReadingWorkbook.readWorkbook;
 import static com.github.brelok.UpdateSheet.updateSheet;
 import static com.github.brelok.WriteToExcel.writeToExcel;
 
-public class Job implements ReadingWorkbook, org.quartz.Job {
+public class Job implements org.quartz.Job {
 
     final static String AME5500 = "https://www.ceneo.pl/51503793";
     final static String AME7000 = "https://www.ceneo.pl/51503794";
@@ -38,7 +41,7 @@ public class Job implements ReadingWorkbook, org.quartz.Job {
 //        }
 
         try {
-            Workbook readingWorkbook = ReadingWorkbook.readWorkbook();
+            Workbook readingWorkbook = readWorkbook();
             updateSheet(AME5500, 0, readingWorkbook);
             updateSheet(AME7000, 1, readingWorkbook);
             updateSheet(MBOT500, 2, readingWorkbook);

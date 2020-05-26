@@ -21,8 +21,8 @@ public class Connector {
 
             Document document = connection.parse();
 
-            Elements elements = document.select(".page-body > #body > .no-banner > .product > .js_product-body.js_available-coupons" +
-                    "> .screening-wrapper > .page-tab-content.click.no-padding.wrapper" +
+            Elements elements = document.select(".page-body > #body > .no-banner > .product.cf > .js_product-body.js_available-coupons" +
+                    "> .screening-wrapper > .page-tab-content.click.cf.wrapper" +
                     "> .site-full-width.wrapper > .product-offers-group > .product-offers.js_product-offers " +
                     "> tbody > .product-offer.clickable-offer.js_offer-container-click.js_product-offer > .cell-store-logo > a > img");
 

@@ -1,9 +1,6 @@
 package com.github.brelok;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,11 +9,13 @@ import java.util.Map;
 
 import static com.github.brelok.Connector.getMap;
 import static com.github.brelok.CreatorSheet.getPricesList;
+import static com.github.brelok.WriteToExcel.writeToExcel;
 
-public class UpdateSheet implements CheckingMinimumValue,GettingTime {
+public class UpdateSheet implements CheckingMinimumValue, GettingTime {
 
 
-    public static Workbook updateSheet(String url, int numberOfSheet, Workbook workbook) throws IOException {
+    public static void updateSheet(String url, int numberOfSheet, Workbook workbook) throws IOException {
+
 
         //data
         Map<String, String> map = getMap(url);
@@ -85,13 +84,13 @@ public class UpdateSheet implements CheckingMinimumValue,GettingTime {
         CheckingMinimumValue.checkTheMinimumValue(workbook, row);
 
 
-
         //align all column
         for (int i = 0; i <= row.getLastCellNum(); i++) {
             sheet.autoSizeColumn(i);
         }
 
-        return workbook;
+        System.out.println("updated sheet: " + numberOfSheet);
+
 
     }
 
